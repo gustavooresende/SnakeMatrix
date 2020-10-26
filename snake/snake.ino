@@ -19,13 +19,21 @@ void setup() {
 
 void loop(){
   printState();
+
+  String textoEntrada;
+    // put your main code here, to run repeatedly:
+    if (Serial.available()>0){
+      textoEntrada = Serial.readString();
+      Serial.print(" O Arduino Recebeu => ");
+      Serial.println(textoEntrada);
+    }
 }
 
 void printState(){
   for (int i = 0; i < 64; i += 8){
     for (int j = 0; j < 8; j++){
 
-      if (state[i + j] == 1){
+      if (textoEntrada[i + j] == 1){
           digitalWrite(rows[j], HIGH);
         }
       else

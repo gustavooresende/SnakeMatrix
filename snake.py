@@ -4,6 +4,15 @@ import time
 import numpy as np
 from pygame.locals import *
 
+import serial
+
+ser = serial.Serial('COM4', 9600)
+time.sleep(3)
+print(" Olha o que chegou ")
+textoEntrada = ser.readline()
+print(textoEntrada)
+# ser.close()
+
 
 def collision(c1, c2):
     return ((c1[0] == c2[0]) and (c1[1] == c2[1]))
@@ -91,5 +100,5 @@ while True:
         mat[j][i] = 1
 
     pygame.display.update()
-    print(mat)
+    ser.write(b'0001000000010001000100000001000000010000000100010001000000010000')
     time.sleep(2)
